@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import nightSVG from "../assets/night.svg";
-import morningSVG from "../assets/Forest Morning.svg";
+import morningSVG from "../assets/forest morning.svg";
 
 export default function Hero({ theme, onToggleTheme }) {
   const [now, setNow] = useState(new Date());
