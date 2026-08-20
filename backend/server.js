@@ -15,7 +15,18 @@ connectDB();
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || /^http:\/\/localhost:\d+$/.test(origin)) {
+      const allowedOrigins = [
+        /^http:\/\/localhost:\d+$/,
+        process.env.CLIENT_URL
+      ];
+
+      const isAllowed =
+        !origin ||
+        allowedOrigins.some((allowed) =>
+          allowed instanceof RegExp ? allowed.test(origin) : allowed === origin
+        );
+
+      if (isAllowed) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
